@@ -1,10 +1,15 @@
 <script>
+	import { fade } from 'svelte/transition';
 	export let name;
+
+	let isReady = 'false';
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	{#if isReady}
+		 <h1 transition:fade>Hello {name}!</h1>
+	{/if}
+	<button on:click={() => isReady = !isReady }>Fade</button>
 </main>
 
 <style>
