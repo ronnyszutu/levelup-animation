@@ -6,13 +6,24 @@
 </script>
 
 <main>
+	<!-- Mounting and unmounting animation -->
 	{#if isReady}
-		 <h1 transition:fade>Hello {name}!</h1>
+		<h1 transition:fade>Hello {name}!</h1>
 	{/if}
+	<!-- Initial load animation -->
+	<h1 transition:fade>Hello {name}!</h1>
+	<!-- Css transition animation -->
+	<h1 class:hidden={!isReady}>Hello {name}!</h1>
+
 	<button on:click={() => isReady = !isReady }>Fade</button>
 </main>
 
 <style>
+	.hidden {
+		opacity: 0;
+		transition: 0.3s ease opacity;
+	}
+
 	main {
 		text-align: center;
 		padding: 1em;
