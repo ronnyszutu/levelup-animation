@@ -1,21 +1,25 @@
 <script>
-	import { fade } from 'svelte/transition';
+	import { fade, blur, slide, fly } from 'svelte/transition';
 	export let name;
 
 	let isReady = 'false';
 </script>
 
 <main>
+	<button on:click={() => isReady = !isReady }>Fade</button>
+
 	<!-- Mounting and unmounting animation -->
 	{#if isReady}
-		<h1 transition:fade>Hello {name}!</h1>
+		<!-- <h1 transition:slide>Hello {name}!</h1> -->
+	{/if}
+	{#if isReady}
+		<h1 transition:fly={{ y: 100, x: 200 }}>Hello {name}!</h1>
 	{/if}
 	<!-- Initial load animation -->
-	<h1 transition:fade>Hello {name}!</h1>
+	<!-- <h1 transition:fade>Hello {name}!</h1> -->
 	<!-- Css transition animation -->
-	<h1 class:hidden={!isReady}>Hello {name}!</h1>
+	<!-- <h1 class:hidden={!isReady}>Hello {name}!</h1> -->
 
-	<button on:click={() => isReady = !isReady }>Fade</button>
 </main>
 
 <style>
