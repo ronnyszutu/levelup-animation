@@ -1,5 +1,6 @@
 <script>
 	import { fade, blur, slide, fly } from 'svelte/transition';
+	import { custom } from './custom';
 	export let name;
 
 	let isReady = 'false';
@@ -9,7 +10,7 @@
 	<button on:click={() => isReady = !isReady }>Fade</button>
 
 	{#if isReady}
-		<h1 in:fly={{ y: 100 }} out:fade>Hello {name}!</h1>
+		<h1 transition:custom={{ delay: 2000 }}>Hello {name}!</h1>
 	{/if}
 
 
