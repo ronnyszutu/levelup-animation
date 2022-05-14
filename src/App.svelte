@@ -2,6 +2,8 @@
 	import { fade, blur, slide, fly } from 'svelte/transition';
 	import { custom } from './custom';
 	import Nav from './Nav.svelte';
+	import Toast from './Toast.svelte';
+	import { alert } from "./alert";
 	export let name;
 
 	let isReady = 'false';
@@ -9,6 +11,13 @@
 
 	function toggleNav() {
 		isNavOpen = !isNavOpen;
+	}
+
+	function toggleAlert() {
+		alert.set({
+			isActive: true,
+			text: "Our new alert",
+		})
 	}
 </script>
 
@@ -19,6 +28,7 @@
 
 <main>
 	<button on:click={ toggleNav }>Menu</button>
+	<button on:click={ toggleAlert }>Alert</button>
 
 	{#if isReady}
 		<h1 transition:custom={{ delay: 2000 }}>Hello {name}!</h1>
@@ -26,6 +36,8 @@
 
 
 </main>
+
+<Toast />
 
 <style>
 	.hidden {
