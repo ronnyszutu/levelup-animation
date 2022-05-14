@@ -11,7 +11,7 @@
 
     alert.subscribe(value => {
         if (value.isActive) {
-            setTimeout(() => (closeAlert), 2000);
+            setTimeout(closeAlert, 2000);
         }
     })
 </script>
