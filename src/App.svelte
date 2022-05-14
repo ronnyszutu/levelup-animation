@@ -1,13 +1,24 @@
 <script>
 	import { fade, blur, slide, fly } from 'svelte/transition';
 	import { custom } from './custom';
+	import Nav from './Nav.svelte';
 	export let name;
 
 	let isReady = 'false';
+	let isNavOpen = false;
+
+	function toggleNav() {
+		isNavOpen = !isNavOpen;
+	}
 </script>
 
+{#if isNavOpen}
+	 <!-- content here -->
+	 <Nav {toggleNav} />
+{/if}
+
 <main>
-	<button on:click={() => isReady = !isReady }>Fade</button>
+	<button on:click={ toggleNav }>Menu</button>
 
 	{#if isReady}
 		<h1 transition:custom={{ delay: 2000 }}>Hello {name}!</h1>
