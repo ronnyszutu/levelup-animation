@@ -4,6 +4,7 @@
 	import Nav from './Nav.svelte';
 	import Toast from './Toast.svelte';
 	import Modal from './Modal.svelte';
+	import Box from './Box.svelte';
 	import { alert } from "./alert";
 	export let name;
 
@@ -36,6 +37,8 @@
 	<button on:click={ toggleNav }>Menu</button>
 	<button on:click={ toggleAlert }>Alert</button>
 	<button on:click={ toggleModal }>Modal</button>
+
+	<Box />
 
 	{#if isReady}
 		<h1 transition:custom={{ delay: 2000 }}>Hello {name}!</h1>
