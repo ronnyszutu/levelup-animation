@@ -54,6 +54,14 @@ export function drag(node, params) {
     }
 
     function handleMouseUp() {
+        // Fire up event
+        node.dispatchEvent(new CustomEvent("dragStop", {
+            detail: {
+                x,
+                y,
+            }
+        }))
+
         // Reset values
         x = 0;
         y = 0;
