@@ -1,5 +1,6 @@
 <script>
 	import { fade, blur, slide, fly } from 'svelte/transition';
+	import { onMount } from 'svelte'
 	import { custom } from './custom';
 	import Nav from './Nav.svelte';
 	import Toast from './Toast.svelte';
@@ -11,6 +12,7 @@
 	let isReady = 'false';
 	let isNavOpen = false;
 	let isModalOpen = false;
+	let isCardActive = false;
 
 	function toggleNav() {
 		isNavOpen = !isNavOpen;
@@ -25,6 +27,24 @@
 
 	function toggleModal() {
 		isModalOpen = !isModalOpen;
+	}
+
+	onMount(() => {
+		// Registers scroll events
+		addScrollEvent();
+	})
+
+	function addScrollEvent() {
+		window.addEventListener("scroll", onScroll, { passive: true });
+	}
+
+	function onScroll() {
+		console.log(window.pageYOffset);
+		const scrollPosition = window.pageYOffset;
+
+		if(scrollPosition > 180) {
+			isCardActive = true;
+		}
 	}
 </script>
 
@@ -43,6 +63,34 @@
 	{#if isReady}
 		<h1 transition:custom={{ delay: 2000 }}>Hello {name}!</h1>
 	{/if}
+
+	<div class="card">
+		<h3>Card</h3>
+		<p>With some paragraph text</p>
+	</div>
+
+	{#if isCardActive}
+		 <!-- content here -->
+		 <div class:hidden={!isCardActive} class="card">
+			 <h3>Second Card</h3>
+			 <p>With some paragraph text</p>
+		 </div>
+	{/if}
+
+	<div class="card">
+		<h3>Card</h3>
+		<p>With some paragraph text</p>
+	</div>
+
+	<div class="card">
+		<h3>Card</h3>
+		<p>With some paragraph text</p>
+	</div>
+
+	<div class="card">
+		<h3>Card</h3>
+		<p>With some paragraph text</p>
+	</div>
 
 
 </main>
@@ -63,6 +111,9 @@
 		transition: 0.3s ease opacity;
 	}
 
+	.card {
+		transition: 0.3s ease opacity;
+	}
 	main {
 		text-align: center;
 		padding: 1em;
