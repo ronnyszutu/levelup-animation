@@ -30,24 +30,27 @@
 		isModalOpen = !isModalOpen;
 	}
 
-	onMount(() => {
-		// Registers scroll events
-		addScrollEvent();
-	})
+	// onMount(() => {
+	// 	// Registers scroll events
+	// 	addScrollEvent();
+	// })
 
-	function addScrollEvent() {
-		window.addEventListener("scroll", onScroll, { passive: true });
+	// function addScrollEvent() {
+	// 	window.addEventListener("scroll", onScroll, { passive: true });
+	// }
+
+	// function onScroll() {
+	// 	console.log(window.pageYOffset);
+	// 	const scrollPosition = window.pageYOffset;
+
+	// 	if(scrollPosition > 180) {
+	// 		isCardActive = true;
+	// 	}
+	// }
+
+	$: if (y > 180) {
+		isCardActive = true;
 	}
-
-	function onScroll() {
-		console.log(window.pageYOffset);
-		const scrollPosition = window.pageYOffset;
-
-		if(scrollPosition > 180) {
-			isCardActive = true;
-		}
-	}
-
 </script>
 
 <svelte:window bind:scrollY={y} />
