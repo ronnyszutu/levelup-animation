@@ -1,9 +1,10 @@
 <script>
     import { scale, fly } from 'svelte/transition';
+    import { drag } from './drag';
     export let toggleModal;
 </script>
 <div class="modal">
-    <div class="card" transition:fly={{ y:40 }}>
+    <div use:drag class="card" transition:fly={{ y:40 }}>
         <button on:click={toggleModal} class="drawer--close">X</button>
         <slot />
     </div>
