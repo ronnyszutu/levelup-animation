@@ -6,6 +6,7 @@
 	import Toast from './Toast.svelte';
 	import Modal from './Modal.svelte';
 	import Box from './Box.svelte';
+	import Cross from './Cross.svelte';
 	import { alert } from "./alert";
 	export let name;
 
@@ -30,24 +31,6 @@
 		isModalOpen = !isModalOpen;
 	}
 
-	// onMount(() => {
-	// 	// Registers scroll events
-	// 	addScrollEvent();
-	// })
-
-	// function addScrollEvent() {
-	// 	window.addEventListener("scroll", onScroll, { passive: true });
-	// }
-
-	// function onScroll() {
-	// 	console.log(window.pageYOffset);
-	// 	const scrollPosition = window.pageYOffset;
-
-	// 	if(scrollPosition > 180) {
-	// 		isCardActive = true;
-	// 	}
-	// }
-
 	$: if (y > 180) {
 		isCardActive = true;
 	}
@@ -66,35 +49,11 @@
 
 	<Box />
 
-	{#if isReady}
+	<Cross />
+
+	<!-- {#if isReady}
 		<h1 transition:custom={{ delay: 2000 }}>Hello {name}!</h1>
-	{/if}
-
-	<div class="card">
-		<h3>Card</h3>
-		<p>With some paragraph text</p>
-	</div>
-
-	<div class:hidden={!isCardActive} class="card">
-		<h3>Second Card</h3>
-		<p>With some paragraph text</p>
-	</div>
-
-	<div class="card">
-		<h3>Card</h3>
-		<p>With some paragraph text</p>
-	</div>
-
-	<div class="card">
-		<h3>Card</h3>
-		<p>With some paragraph text</p>
-	</div>
-
-	<div class="card">
-		<h3>Card</h3>
-		<p>With some paragraph text</p>
-	</div>
-
+	{/if} -->
 
 </main>
 
