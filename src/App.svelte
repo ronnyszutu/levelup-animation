@@ -13,6 +13,7 @@
 	let isNavOpen = false;
 	let isModalOpen = false;
 	let isCardActive = false;
+	let y;
 
 	function toggleNav() {
 		isNavOpen = !isNavOpen;
@@ -46,10 +47,12 @@
 			isCardActive = true;
 		}
 	}
+
 </script>
 
+<svelte:window bind:scrollY={y} />
+
 {#if isNavOpen}
-	 <!-- content here -->
 	 <Nav {toggleNav} />
 {/if}
 
@@ -69,13 +72,10 @@
 		<p>With some paragraph text</p>
 	</div>
 
-	{#if isCardActive}
-		 <!-- content here -->
-		 <div class:hidden={!isCardActive} class="card">
-			 <h3>Second Card</h3>
-			 <p>With some paragraph text</p>
-		 </div>
-	{/if}
+	<div class:hidden={!isCardActive} class="card">
+		<h3>Second Card</h3>
+		<p>With some paragraph text</p>
+	</div>
 
 	<div class="card">
 		<h3>Card</h3>
@@ -114,6 +114,7 @@
 	.card {
 		transition: 0.3s ease opacity;
 	}
+
 	main {
 		text-align: center;
 		padding: 1em;
