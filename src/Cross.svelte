@@ -1,5 +1,6 @@
 <script>
     import { crossfade,fade } from 'svelte/transition';
+    import { flip } from 'svelte/animate';
 
     let todo = [
         {
@@ -17,6 +18,16 @@
             isDone: false,
             text: "Comb hair",
         },
+        {
+            id: 4,
+            isDone: false,
+            text: "Drive car",
+        },
+        {
+            id: 5,
+            isDone: false,
+            text: "Dream",
+        },
     ];
 
     const [ send, receive ] = crossfade({
@@ -30,6 +41,7 @@
         <ul>
             {#each todo.filter(item => !item.isDone) as item (item.id)}
                 <li
+                    animate:flip
                     in:receive={{ key: item.id }}
                     out:send={{ key: item.id }}
                 >
@@ -47,6 +59,7 @@
         <ul>
             {#each todo.filter(item => item.isDone) as item (item.id)}
                 <li
+                    animate:flip
                     in:receive={{ key: item.id }}
                     out:send={{ key: item.id }}
                 >
@@ -61,6 +74,10 @@
 </div>
 
 <style>
+    .card {
+        width: 50%;
+    }
+
     ul {
         margin: 0;
         list-style: none;
