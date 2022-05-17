@@ -9,6 +9,7 @@
 	import Cross from './Cross.svelte';
 	import { alert } from "./alert";
 	export let name;
+	let cubes = [...Array(50).keys()];
 
 	let isReady = 'false';
 	let isNavOpen = false;
@@ -43,17 +44,22 @@
 {/if}
 
 <main>
-	<button on:click={ toggleNav }>Menu</button>
+	<!-- <button on:click={ toggleNav }>Menu</button>
 	<button on:click={ toggleAlert }>Alert</button>
 	<button on:click={ toggleModal }>Modal</button>
 
 	<Box />
 
-	<Cross />
+	<Cross /> -->
 
 	<!-- {#if isReady}
 		<h1 transition:custom={{ delay: 2000 }}>Hello {name}!</h1>
 	{/if} -->
+	<div class="grid">
+		{#each cubes as cube, i}
+			<div transition:fade={{ duration: 1000, delay: i * 100 }} class="box" />
+		{/each}
+	</div>
 
 </main>
 
@@ -95,5 +101,17 @@
 		main {
 			max-width: none;
 		}
+	}
+
+	.box {
+        background: var(--primary);
+        box-shadow: var(--level-2);
+        height: 100px;
+        width: 100px;
+    }
+
+	.grid {
+		--gridCols: 5;
+		gap: 20px;
 	}
 </style>
