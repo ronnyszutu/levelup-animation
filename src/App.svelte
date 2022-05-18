@@ -2,6 +2,7 @@
 	import { fade, blur, slide, fly } from 'svelte/transition';
 	import { onMount } from 'svelte'
 	import { custom } from './custom';
+	import { bounceOut,quintInOut } from 'svelte/easing';
 	import Nav from './Nav.svelte';
 	import Toast from './Toast.svelte';
 	import Modal from './Modal.svelte';
@@ -57,7 +58,13 @@
 	{/if} -->
 	<div class="grid">
 		{#each cubes as cube, i}
-			<div transition:fade={{ duration: 1000, delay: i * 100 }} class="box" />
+			<div transition:fly={{ 
+				y:100, 
+				duration: 2000, 
+				delay: i * 100, 
+				easing: quintInOut, 
+				// easing: bounceOut, 
+			}} class="box" />
 		{/each}
 	</div>
 
